@@ -29,8 +29,15 @@ User = m_connect.model('User',userSchema);
 app.post('/api/users',function(req,res){
   console.log('req.body = ' + req.body);
   let createAndSaveUser = function(done){
-    // let a = 
+    let a = req.body;
+    let b = new User(a);
+    b.save(function(err,data){
+      if (err) console.log ('error = ' + err);
+      else console.log('data = ' + data);
+    });
+    done(null);
   };
+  res.send(req.body);
 });
 
 const listener = app.listen(process.env.PORT || 3000, () => {
