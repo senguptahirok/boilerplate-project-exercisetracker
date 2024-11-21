@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const cors = require('cors')
+const bodyParser = require('body-parser');
 require('dotenv').config()
 
 app.use(cors())
@@ -9,9 +10,28 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/views/index.html')
 });
 
+app.use(bodyParser.urlencoded({extended: false}));
 
+let m_uri = process.env.MONGO_URI;
+let m_connect = require('mongoose');
+m_connect.connect(m_uri,{useNewUrlParser: true, useUnifiedTopology: true});
 
+let User;
+let userSchema = new m_connect.Schema({
+  username:{
+    type: String,
+    required: true
+  }
+});
+User = m_connect.model('User',userSchema);
 
+/* POST /api/users */
+app.post('/api/users',function(req,res){
+  console.log('req.body = ' + req.body);
+  let createAndSaveUser = function(done){
+    // let a = 
+  };
+});
 
 const listener = app.listen(process.env.PORT || 3000, () => {
   console.log('Your app is listening on port ' + listener.address().port)
