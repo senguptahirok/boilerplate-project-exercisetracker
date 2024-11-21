@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const cors = require('cors')
 const bodyParser = require('body-parser');
+const m_connect = require('mongoose');
 require('dotenv').config()
 
 app.use(cors())
@@ -13,7 +14,6 @@ app.get('/', (req, res) => {
 app.use(bodyParser.urlencoded({extended: false}));
 
 let m_uri = process.env.MONGO_URI;
-let m_connect = require('mongoose');
 m_connect.connect(m_uri,{useNewUrlParser: true, useUnifiedTopology: true});
 
 let User;
