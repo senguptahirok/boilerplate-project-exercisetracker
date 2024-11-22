@@ -36,8 +36,9 @@ User = m_connect.model('User',userSchema);
     b.save(function(err,data){
       if (err) console.log ('error = ' + err);
       else console.log('data = ' + data);
+      done(null,data);
     });
-    done(null);
+//    done(null);
   };
 
   /* find an User by name from the MongoDB database */
