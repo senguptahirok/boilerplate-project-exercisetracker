@@ -41,7 +41,7 @@ User = m_connect.model('User',userSchema);
   };
 
   /* find an User by name from the MongoDB database */
-  let userN = userNameStr;
+  /* let userN = userNameStr;
   let findUser = function(userN, done){
     User.find({username: userN},function(err,userFound){
       if (err) console.log('error in finding the user in User model in MongoDB');
@@ -51,7 +51,8 @@ User = m_connect.model('User',userSchema);
       }
     });
     done(null,data);
-  };
+  };*/
+  res.json({'username': userNameStr});
 });
 
 const listener = app.listen(process.env.PORT || 3000, () => {
