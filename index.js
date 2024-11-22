@@ -27,7 +27,7 @@ User = m_connect.model('User',userSchema);
 */
 /* POST /api/users */
  app.post('/api/users',function(req,res){
-  console.log('req.body = ' + req.body);
+  console.log('req.body = ' + Object.values(req.body));
 /*  let createAndSaveUser = function(done){
     let a = req.body;
     let b = new User(a);
