@@ -37,7 +37,7 @@ User = m_connect.model('User',userSchema);
     });
     done(null);
   }; */
-  res.send({'user info': req.body});
+  res.send({'user info': Object.values(req.body)});
 });
 
 const listener = app.listen(process.env.PORT || 3000, () => {
