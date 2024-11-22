@@ -12,7 +12,7 @@ app.get('/', (req, res) => {
 });
 
 app.use(bodyParser.urlencoded({extended: false}));
-
+/*
 let m_uri = process.env.MONGO_URI;
 m_connect.connect(m_uri,{useNewUrlParser: true, useUnifiedTopology: true});
 
@@ -24,11 +24,11 @@ let userSchema = new m_connect.Schema({
   }
 });
 User = m_connect.model('User',userSchema);
-
+*/
 /* POST /api/users */
 app.post('/api/users',function(req,res){
   console.log('req.body = ' + req.body);
-  let createAndSaveUser = function(done){
+/*  let createAndSaveUser = function(done){
     let a = req.body;
     let b = new User(a);
     b.save(function(err,data){
@@ -36,8 +36,8 @@ app.post('/api/users',function(req,res){
       else console.log('data = ' + data);
     });
     done(null);
-  };
-  res.send(req.body);
+  }; */
+  res.send({'user info': req.body});
 });
 
 const listener = app.listen(process.env.PORT || 3000, () => {
