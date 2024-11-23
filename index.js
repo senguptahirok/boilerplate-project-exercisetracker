@@ -24,6 +24,7 @@ let userSchema = new m_connect.Schema({
   }
 });
 User = m_connect.model('User',userSchema);
+exports.UserModel = User;
 
 /* POST /api/users */
  app.post('/api/users',function(req,res){
@@ -40,6 +41,7 @@ User = m_connect.model('User',userSchema);
     });
 //    done(null);
   };
+  exports.createAndSaveUser = createAndSaveUser;
 
   /* find an User by name from the MongoDB database */
   /* let userN = userNameStr;
