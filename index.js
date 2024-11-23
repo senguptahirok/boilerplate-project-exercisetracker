@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({extended: false}));
   console.log('req.body = ' + userNameStr);
   if (!req.body) res.json({success: false, msg: 'please pass user name'});
   else {
-    let newUser = new User({
+    let newUser = new newUser({
       name: userNameStr
     })
   }
