@@ -27,7 +27,7 @@ app.get('/', (req, res) => {
 
 app.use(bodyParser.urlencoded({extended: false}));
 let host01 = '';
-app.post('/api/users',function(req,res,done){
+app.post('/api/users',function(req,res){
   host01 = Object.values(req.body);
   host01 = host01.toString();
   let a = {name: host01};
@@ -37,9 +37,9 @@ app.post('/api/users',function(req,res,done){
   b.save(function(err,data){
     if (err) console.log('error = '+ err);
     else console.log('data = ' + data);
-    done(null, data);
+  //  done(null, data);
+    res.json({"username": data.name, "id": data._id});
   });
-  res.json({"host": host01, "id": _id});
 });
 
 const listener = app.listen(process.env.PORT || 3000, () => {
