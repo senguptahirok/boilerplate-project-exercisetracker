@@ -14,7 +14,7 @@ let userSchema = new m_connect.Schema({
   name:{
     type: String,
     required: true
-  },
+  }
 });
 
 User = m_connect.model('User',userSchema);
@@ -32,10 +32,14 @@ app.post('/api/users',function(req,res){
   host01 = host01.toString();
   let a = {name: host01};
   let b = new User(a);
+  console.log('a = ' + a);
+  console.log('b = ' + b);
   b.save(function(err,data){
     if (err) console.log('error = '+ err);
+    else console.log('data = ' + data);
   });
-  res.json({"host": host01});
+  done(null);
+//  res.json({"host": host01});
 });
 
 const listener = app.listen(process.env.PORT || 3000, () => {
