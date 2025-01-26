@@ -1,9 +1,10 @@
 const express = require('express')
 const app = express()
-const cors = require('cors')
+//const cors = require('cors')
 const bodyParser = require('body-parser');
 require('dotenv').config()
 let m_uri = process.env.MONGO_URI;
+const cors = require('cors')
 
 let User;
 let m_connect = require('mongoose');
