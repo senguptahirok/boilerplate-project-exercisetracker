@@ -37,9 +37,9 @@ app.post('/api/users',function(req,res,done){
   b.save(function(err,data){
     if (err) console.log('error = '+ err);
     else console.log('data = ' + data);
+    done(null, data);
   });
-  done(null);
-  res.json({"host": host01});
+  res.json({"host": host01, "id": _id});
 });
 
 const listener = app.listen(process.env.PORT || 3000, () => {
