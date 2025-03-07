@@ -42,6 +42,20 @@ app.post('/api/users',function(req,res){
   });
 });
 
+host01 = ''
+app.post('/api/users/:_id/exercises', function(req,res){
+  host01 = Object.values(req.body);
+  host01 = host01.toString();
+  let a = {'id': host01[0], 'description': host01[1], 'duration': host01[2], 'date': host01[3]};
+  let b = new User(a);
+  console.log('a1 = ' + a);
+  console.log('b1 = ' + b);
+  b.save(function(err,data){
+    if (err) console.log('error = ' + err);
+    else console.log('data = ' + data);
+    res.json(b);
+  });
+});
 const listener = app.listen(process.env.PORT || 3000, () => {
   console.log('Your app is listening on port ' + listener.address().port)
 })
