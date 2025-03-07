@@ -6,18 +6,28 @@ require('dotenv').config()
 let m_uri = process.env.MONGO_URI;
 const cors = require('cors')
 
-let User;
 let m_connect = require('mongoose');
 m_connect.connect(m_uri,{useNewUrlParser: true, useUnifiedTopology: true});
 
+/* User Schema */
+let User;
 let userSchema = new m_connect.Schema({
   name:{
     type: String,
     required: true
   }
 });
-
 User = m_connect.model('User',userSchema);
+
+/* Exercise Schema */
+let Exercises;
+let exeSchema = new m_connect.Schema({
+  id:{type: String, required: true},
+  description:{type: String, required: true},
+  duration:{type: Number, required: true},
+  date: {type: String, required: false}
+});
+Exercises = m_connect.model('Exercises',exeSchema);
 
 app.use(cors())
 app.use(express.static('public'))
@@ -42,11 +52,12 @@ app.post('/api/users',function(req,res){
   });
 });
 
+//app.use(bodyParser.urlencoded({extended: false}));
 host01 = ''
 app.post('/api/users/:_id/exercises', function(req,res){
   host01 = Object.values(req.body);
   host01 = host01.toString();
-  let a = {'id': host01[0], 'description': host01[1], 'duration': host01[2], 'date': host01[3]};
+  let a = {id: host01[0], description: host01[1], duration: host01[2], date: host01[3]};
   let b = new User(a);
   console.log('a1 = ' + a);
   console.log('b1 = ' + b);
