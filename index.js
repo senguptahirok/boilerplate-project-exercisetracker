@@ -37,6 +37,7 @@ app.get('/', (req, res) => {
 
 app.use(bodyParser.urlencoded({extended: false}));
 let host01 = '';
+/*
 app.post('/api/users',function(req,res){
   host01 = Object.values(req.body);
   host01 = host01.toString();
@@ -51,7 +52,7 @@ app.post('/api/users',function(req,res){
     res.json({"username": data.name, "id": data._id});
   });
 });
-
+*/
 app.use(bodyParser.urlencoded({extended: true}));
 host01 = ''
 app.post('/api/users/:_id/exercises', function(req,res){
