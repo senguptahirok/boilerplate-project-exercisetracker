@@ -54,13 +54,12 @@ app.post('/api/users',function(req,res){
   });
 });
 
-//app.use(bodyParser.urlencoded({extended: true}));
 let host02 = ''
 app.post('/api/users/:_id/exercises', function(req,res){
-  host02 = Object.values(req.body);
-  host02 = host02.toString();
-  console.log('host02 = ' + host02)
-  let a = {id: host02[0], description: host02[1], duration: host02[2], date: host02[3]};
+  host02 = Object.keys(req.body);
+  // host02 = host02.toString();
+  // console.log('host02 = ' + host02)
+  let a = {id: req.body[host02[0]], description: req.body[host02[1]], duration: req.body[host02[2]], date: req.body[host02[3]]};
   let b = new User(a);
   console.log('a1 = ' + a);
   console.log('b1 = ' + b);
