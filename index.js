@@ -17,7 +17,7 @@ let userSchema = new m_connect.Schema({
     required: true
   }
 });
-User = m_connect.model('User',userSchema);
+//User = m_connect.model('User',userSchema);
 
 /* Exercise Schema */
 let Exercises;
