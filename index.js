@@ -52,7 +52,7 @@ app.post('/api/users',function(req,res){
   });
 });
 
-//app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({extended: false}));
 host01 = ''
 app.post('/api/users/:_id/exercises', function(req,res){
   host01 = Object.values(req.body);
