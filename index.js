@@ -35,12 +35,13 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/views/index.html')
 });
 
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({extended: true}));
 let host01 = '';
 
 app.post('/api/users',function(req,res){
   host01 = Object.values(req.body);
   host01 = host01.toString();
+  console.log('host01 = ' + host01);
   let a = {name: host01};
   let b = new User(a);
   console.log('a = ' + a);
@@ -53,13 +54,13 @@ app.post('/api/users',function(req,res){
   });
 });
 
-app.use(bodyParser.urlencoded({extended: true}));
-host01 = ''
+//app.use(bodyParser.urlencoded({extended: true}));
+let host02 = ''
 app.post('/api/users/:_id/exercises', function(req,res){
-  host01 = Object.values(req.body);
-  host01 = host01.toString();
-  console.log('host01 = ' + host01)
-  let a = {id: host01[0], description: host01[1], duration: host01[2], date: host01[3]};
+  host02 = Object.values(req.body);
+  host02 = host02.toString();
+  console.log('host02 = ' + host02)
+  let a = {id: host02[0], description: host02[1], duration: host02[2], date: host02[3]};
   let b = new User(a);
   console.log('a1 = ' + a);
   console.log('b1 = ' + b);
