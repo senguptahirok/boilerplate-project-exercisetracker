@@ -17,7 +17,7 @@ let userSchema = new m_connect.Schema({
     required: true
   }
 });
-//User = m_connect.model('User',userSchema);
+User = m_connect.model('User',userSchema);
 
 /* Exercise Schema */
 let Exercises;
@@ -58,6 +58,7 @@ host01 = ''
 app.post('/api/users/:_id/exercises', function(req,res){
   host01 = Object.values(req.body);
   host01 = host01.toString();
+  console.log('host01 = ' + host01)
   let a = {id: host01[0], description: host01[1], duration: host01[2], date: host01[3]};
   let b = new User(a);
   console.log('a1 = ' + a);
