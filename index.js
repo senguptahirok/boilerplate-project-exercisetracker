@@ -54,11 +54,14 @@ app.post('/api/users',function(req,res){
   });
 });
 
-let host02 = ''
+let host02 = []
 app.post('/api/users/:_id/exercises', function(req,res){
-  host02 = Object.keys(req.body);
-  // host02 = host02.toString();
-  // console.log('host02 = ' + host02)
+  host01 = Object.values(req.body);
+  host01 = host01.toString();
+  host02 = host01.split(',');
+  console.log(' **** in exercise area **** ');
+  console.log('host01 = ' + host01);
+  console.log('host02 = ' + host02);
   let a = {id: req.body[host02[0]], description: req.body[host02[1]], duration: req.body[host02[2]], date: req.body[host02[3]]};
   let b = new User(a);
   console.log('a1 = ' + a);
