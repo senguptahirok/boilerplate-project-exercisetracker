@@ -63,6 +63,7 @@ app.post('/api/users/:_id/exercises', function(req,res){
   console.log('host01 = ' + host01);
   console.log('type of host01 = ' + typeof(host01));
   console.log('host02 = ' + host02);
+  console.log('type of host02 = ' + typeof(host02));
   let a = {id: host02[0], description: host02[1], duration: host02[2], date: host02[3]};
   let b = new User(a);
   console.log('a1 = ' + a);
