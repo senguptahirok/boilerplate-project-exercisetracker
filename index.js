@@ -61,6 +61,7 @@ app.post('/api/users/:_id/exercises', function(req,res){
   host02 = host01.split(",");
   console.log(' **** in exercise area **** ');
   console.log('host01 = ' + host01);
+  console.log('type of host01 = ' + typeof(host01));
   console.log('host02 = ' + host02);
   let a = {id: req.body[host02[0]], description: req.body[host02[1]], duration: req.body[host02[2]], date: req.body[host02[3]]};
   let b = new User(a);
