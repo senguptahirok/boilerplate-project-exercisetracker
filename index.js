@@ -54,11 +54,10 @@ app.post('/api/users',function(req,res){
   });
 });
 
-// let host02 = [];
+let host02 = [];
 app.post('/api/users/:_id/exercises', function(req,res){
   host01 = Object.values(req.body);
-  host01 = host01.toString();
-  let host02 = host01.split(",");
+  for (value in host01) {host02 = host02.push(value)};
   console.log(' **** in exercise area **** ');
   console.log('host01 = ' + host01);
   console.log('type of host01 = ' + typeof(host01));
