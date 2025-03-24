@@ -57,7 +57,7 @@ app.post('/api/users',function(req,res){
 let host02 = [];
 app.post('/api/users/:_id/exercises', function(req,res){
   host01 = Object.values(req.body);
-  // host01 = host01.toString();
+  host01 = host01.toString();
   host02 = host01.split(',');
   // for (value in host01) {host02.push(host01[value])};
   console.log(' **** in exercise area **** ');
