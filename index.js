@@ -20,14 +20,14 @@ let userSchema = new m_connect.Schema({
 User = m_connect.model('User',userSchema);
 
 /* Exercise Schema */
-let Exercises;
+let Exercise;
 let exeSchema = new m_connect.Schema({
   id:{type: String, required: true},
   description:{type: String, required: true},
   duration:{type: Number, required: true},
   date: {type: String, required: false}
 });
-Exercises = m_connect.model('Exercises',exeSchema);
+Exercise = m_connect.model('Exercise',exeSchema);
 
 app.use(cors())
 app.use(express.static('public'))
@@ -66,7 +66,7 @@ app.post('/api/users/:_id/exercises', function(req,res){
   console.log('host02 = ' + host02);
   console.log('type of host02 = ' + typeof(host02));
   let a = {id: host02[0], description: host02[1], duration: host02[2], date: host02[3]};
-  let b = new User(a);
+  let b = new Exercise(a);
   console.log('a1 = ' + a);
   console.log('b1 = ' + b);
   b.save(function(err,data){
