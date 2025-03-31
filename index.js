@@ -50,7 +50,7 @@ app.post('/api/users',function(req,res){
     if (err) console.log('error = '+ err);
     else console.log('data = ' + data);
   //  done(null, data);
-    res.json({"username": data.name, "id": data._id});
+    res.json({"username": data.name, "_id": data._id});
   });
 });
 
