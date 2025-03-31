@@ -37,7 +37,7 @@ app.get('/', (req, res) => {
 
 app.use(bodyParser.urlencoded({extended: true}));
 let host01 = '';
-
+let b_user = {};
 app.post('/api/users',function(req,res){
   host01 = Object.values(req.body);
   host01 = host01.toString();
@@ -50,29 +50,35 @@ app.post('/api/users',function(req,res){
     if (err) console.log('error = '+ err);
     else console.log('data = ' + data);
   //  done(null, data);
-    res.json({"username": data.name, "_id": data._id});
+    b_user = {"username": data.name, "_id": data._id};
+    res.json(b_user);
   });
 });
 
-let host02 = [];
+let host02 = '';
+let host03 = [];
+let b_exercise = {};
 app.post('/api/users/:_id/exercises', function(req,res){
-  host01 = Object.values(req.body);
-  host01 = host01.toString();
-  host02 = host01.split(',');
+  host02 = Object.values(req.body);
+  host02 = host02.toString();
+  host03 = host02.split(',');
   // for (value in host01) {host02.push(host01[value])};
   console.log(' **** in exercise area **** ');
-  console.log('host01 = ' + host01);
-  console.log('type of host01 = ' + typeof(host01));
   console.log('host02 = ' + host02);
   console.log('type of host02 = ' + typeof(host02));
-  let a = {id: host02[0], description: host02[1], duration: host02[2], date: host02[3]};
+  console.log('host03 = ' + host03);
+  console.log('type of host03 = ' + typeof(host03));
+  let a = {id: host03[0], description: host03[1], duration: host03[2], date: host03[3]};
   let b = new Exercise(a);
   console.log('a1 = ' + a);
   console.log('b1 = ' + b);
   b.save(function(err,data){
     if (err) console.log('error = ' + err);
     else console.log('data = ' + data);
-    res.json(b);
+    b_exercise = {"description": data.description, 
+                  "duration": data.duration, "date": data.date.toDateString(),
+                  "_id": data.id};
+    res.json(b_exercise);
   });
 });
 const listener = app.listen(process.env.PORT || 3000, () => {
