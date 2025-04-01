@@ -66,11 +66,11 @@ app.post('/api/users/:_id/exercises', function(req,res){
   host02 = host02.toString();
   host03 = host02.split(',');
   // for (value in host01) {host02.push(host01[value])};
-  console.log(' **** in exercise area **** ');
-  console.log('host02 = ' + host02);
-  console.log('type of host02 = ' + typeof(host02));
-  console.log('host03 = ' + host03);
-  console.log('type of host03 = ' + typeof(host03));
+  // console.log(' **** in exercise area **** ');
+  // console.log('host02 = ' + host02);
+  // console.log('type of host02 = ' + typeof(host02));
+  // console.log('host03 = ' + host03);
+  // console.log('type of host03 = ' + typeof(host03));
   let a = {id: host03[0], description: host03[1], duration: host03[2], date: host03[3]};
   let b = new Exercise(a);
   console.log('a1 = ' + a);
@@ -78,7 +78,17 @@ app.post('/api/users/:_id/exercises', function(req,res){
   b.save(function(err,data){
     if (err) console.log('error = ' + err);
     else console.log('data = ' + data);
-    b_exercise = {"description": data.description, 
+
+    /* get username from the User Schema, based on the _id */
+    let userId = data.id;
+    let userN = '';
+    let findUserById = function(userId, done){
+      User.findById({_id: userId, function(err01,data01){
+         if (err) console.log('user id = ' + userId + 'is not present in User Schema');
+         else userN = data01.name;
+      }});
+    };
+    b_exercise = {"username": userN, "description": data.description, 
                   "duration": data.duration, "date": data.date,
                   "_id": data.id};
     res.json(b_exercise);
