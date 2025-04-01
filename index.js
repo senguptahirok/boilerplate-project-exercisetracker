@@ -82,15 +82,12 @@ app.post('/api/users/:_id/exercises', function(req,res){
     /* get username from the User Schema, based on the _id */
     let userId = data.id;
     let userN = '';
-    let findUserById = function(userId, done){
-      User.findById({_id: userId, function(err01,data01){
-         if (err01) console.log('user id = ' + userId + 'is not present in User Schema, error = ' + err01);
-         else console.log('data01 = ' + data01);
-         userN = data01.name;
-         console.log('userN = ' + userN);         
-         done(null, data01);
-      }});
-    };
+    User.findById({_id: userId, function(err01,data01){
+      if (err01) console.log('user id = ' + userId + 'is not present in User Schema, error = ' + err01);
+      else console.log('data01 = ' + data01);
+      userN = data01.name;
+      console.log('userN = ' + userN);         
+    }});
     b_exercise = {"username": userN, "description": data.description, 
                   "duration": data.duration, "date": data.date,
                   "_id": data.id};
