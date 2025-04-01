@@ -36,6 +36,8 @@ app.get('/', (req, res) => {
 });
 
 app.use(bodyParser.urlencoded({extended: true}));
+
+/* POST Section for Schema: User */
 let host01 = '';
 let b_user = {};
 app.post('/api/users',function(req,res){
@@ -55,6 +57,7 @@ app.post('/api/users',function(req,res){
   });
 });
 
+/* POST Section for Schema: Exercise */
 let host02 = '';
 let host03 = [];
 let b_exercise = {};
@@ -76,7 +79,7 @@ app.post('/api/users/:_id/exercises', function(req,res){
     if (err) console.log('error = ' + err);
     else console.log('data = ' + data);
     b_exercise = {"description": data.description, 
-                  "duration": data.duration, "date": data.date.toDateString(),
+                  "duration": data.duration, "date": data.date,
                   "_id": data.id};
     res.json(b_exercise);
   });
