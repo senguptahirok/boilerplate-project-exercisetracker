@@ -77,7 +77,7 @@ app.post('/api/users/:_id/exercises', function(req,res){
   console.log('b1 = ' + b);
   b.save(function(err,data){
     if (err) console.log('error = ' + err);
-    else console.log('data = ' + data);
+    // else console.log('data = ' + data);
 
     /* get username from the User Schema, based on the _id */
     let userId = data.id;
