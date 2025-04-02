@@ -80,8 +80,9 @@ app.post('/api/users/:_id/exercises', function(req,res){
       if (err01) console.log('user id = ' + userId + 'is not present in User Schema, error = ' + err01);
       else console.log('data01 = ' + data01);
       b_exercise = {"username": data01.name, "description": data.description, "duration": data.duration, "date": data.date, "_id": data.id};
+      res.json(b_exercise);
     });
-    res.json(b_exercise);
+//    res.json(b_exercise);
   });
 });
 const listener = app.listen(process.env.PORT || 3000, () => {
