@@ -83,6 +83,7 @@ app.post('/api/users/:_id/exercises', function(req,res){
     let userId = data.id;
     let userN = '';
     User.findById({_id: userId, function(err01,data01){
+      console.log(' ***** in function findById ****** ');
       if (err01) console.log('user id = ' + userId + 'is not present in User Schema, error = ' + err01);
       else console.log('data01 = ' + data01);
       userN = data01.name;
