@@ -61,14 +61,13 @@ app.post('/api/users',function(req,res){
 let host02 = '';
 let host03 = [];
 let b_exercise = {};
+let dateStr = '';
 app.post('/api/users/:_id/exercises', function(req,res){
   host02 = Object.values(req.body);
   host02 = host02.toString();
   host03 = host02.split(',');
   let a = {id: host03[0], description: host03[1], duration: host03[2], date: host03[3]};
   let b = new Exercise(a);
-  // console.log('a1 = ' + a);
-  // console.log('b1 = ' + b);
   b.save(function(err,data){
     if (err) console.log('error = ' + err);
     else console.log('data = ' + data);
@@ -76,10 +75,11 @@ app.post('/api/users/:_id/exercises', function(req,res){
     /* get username from the User Schema, based on the _id */
     let userId = data.id;
     User.findById({_id: userId}, function(err01,data01){
-      console.log(' ***** in function findById ****** ');
       if (err01) console.log('user id = ' + userId + 'is not present in User Schema, error = ' + err01);
       else console.log('data01 = ' + data01);
-      b_exercise = {"username": data01.name, "description": data.description, "duration": data.duration, "date": data.date, "_id": data.id};
+      dateStr = data.date;
+      dateStr = dateStr.toString();
+      b_exercise = {"username": data01.name, "description": data.description, "duration": data.duration, "date": dateStr, "_id": data.id};
       res.json(b_exercise);
     });
 //    res.json(b_exercise);
