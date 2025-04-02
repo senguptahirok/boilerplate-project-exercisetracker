@@ -60,6 +60,7 @@ app.post('/api/users',function(req,res){
 /* POST Section for Schema: Exercise */
 let host02 = '';
 let host03 = [];
+let userN = '';
 let b_exercise = {};
 app.post('/api/users/:_id/exercises', function(req,res){
   host02 = Object.values(req.body);
@@ -81,7 +82,7 @@ app.post('/api/users/:_id/exercises', function(req,res){
 
     /* get username from the User Schema, based on the _id */
     let userId = data.id;
-    let userN = '';
+    // let userN = '';
     User.findById({_id: userId}, function(err01,data01){
       console.log(' ***** in function findById ****** ');
       if (err01) console.log('user id = ' + userId + 'is not present in User Schema, error = ' + err01);
