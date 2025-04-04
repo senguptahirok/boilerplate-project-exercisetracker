@@ -61,12 +61,16 @@ app.post('/api/users',function(req,res){
 let host02 = '';
 let host03 = [];
 let b_exercise = {};
-let dateStr = '';
+// let dateStr = '';
 app.post('/api/users/:_id/exercises', function(req,res){
   host02 = Object.values(req.body);
   host02 = host02.toString();
   host03 = host02.split(',');
   let a = {id: host03[0], description: host03[1], duration: host03[2], date: host03[3]};
+
+  /* to load the current date, if the date field is not filled-in */
+  if (host03[3] == '') host03[3] = new Date().format('Y-m-d');
+
   let b = new Exercise(a);
   b.save(function(err,data){
     if (err) console.log('error = ' + err);
@@ -77,8 +81,10 @@ app.post('/api/users/:_id/exercises', function(req,res){
     User.findById({_id: userId}, function(err01,data01){
       if (err01) console.log('user id = ' + userId + 'is not present in User Schema, error = ' + err01);
       else console.log('data01 = ' + data01);
-      dateStr = data.date;
-      dateStr = dateStr.toString();
+
+    /* to display the date in user readable format */
+      let dateStr = new Date(data.date);
+      dateStr = dateStr.toDateString();
       b_exercise = {"username": data01.name, "description": data.description, "duration": data.duration, "date": dateStr, "_id": data.id};
       res.json(b_exercise);
     });
