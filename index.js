@@ -61,7 +61,7 @@ app.post('/api/users',function(req,res){
 let host02 = '';
 let host03 = [];
 let b_exercise = {};
-// let dateStr = '';
+let datePattern = //g;
 app.post('/api/users/:_id/exercises', function(req,res){
   host02 = Object.values(req.body);
   host02 = host02.toString();
@@ -69,7 +69,8 @@ app.post('/api/users/:_id/exercises', function(req,res){
   let a = {id: host03[0], description: host03[1], duration: host03[2], date: host03[3]};
 
   /* to load the current date, if the date field is not filled-in */
-  if (host03[3] == ' ') host03[3] = new Date().toISOString().substring(0,10);
+  if (datePattern.test(host03[3])) 
+    host03[3] = new Date().toISOString().substring(0,10);
 
   let b = new Exercise(a);
   b.save(function(err,data){
