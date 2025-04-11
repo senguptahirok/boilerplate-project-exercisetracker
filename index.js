@@ -70,6 +70,7 @@ app.post('/api/users/:_id/exercises', function(req,res){
   /* to load the current date, if the date field is not filled-in */
   console.log('host03[3] = ' + host03[3]);
   console.log('type of host03[3] = ' + typeof(host03[3]));
+  console.log('length of host03[3] = ' + host03[3].length);
   if (host03[3].length === 0)
     host03[3] = new Date().toISOString().substring(0,10);
 
