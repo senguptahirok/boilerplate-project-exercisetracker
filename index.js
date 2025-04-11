@@ -73,6 +73,7 @@ app.post('/api/users/:_id/exercises', function(req,res){
   console.log('length of host03[3] = ' + host03[3].length);
   if (host03[3].length === 0)
     host03[3] = new Date().toISOString().substring(0,10);
+  console.log('---> host03[3] = ' + host03[3]);
 
   let b = new Exercise(a);
   b.save(function(err,data){
