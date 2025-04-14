@@ -97,6 +97,19 @@ app.post('/api/users/:_id/exercises', function(req,res){
 //    res.json(b_exercise);
   });
 });
+
+/* get a list of all the Users */
+app.get('/api/users', function(req,res){
+  User.find()
+  .exec(function(err, data){
+    if (err)
+      console.log('error msg, no user was found ... ');
+    else
+      console.log('list of users = ' + data);
+    res.json([data]);
+  });
+
+});
 const listener = app.listen(process.env.PORT || 3000, () => {
   console.log('Your app is listening on port ' + listener.address().port)
 })
