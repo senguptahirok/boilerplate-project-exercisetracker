@@ -106,7 +106,7 @@ app.get('/api/users', function(req,res){
       console.log('error msg, no user was found ... ');
     else
       console.log('list of users = ' + data);
-    res.json([data]);
+    res.json(data);
   });
 
 });
