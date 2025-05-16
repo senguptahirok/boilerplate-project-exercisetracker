@@ -84,16 +84,17 @@ app.post('/api/users/:_id/exercises', function(req,res){
 
     /* get username from the User Schema, based on the _id */
     let userId = data.id;
-    User.findById({_id: userId}, function(err01,data01){
+    /* User.findById({_id: userId}, function(err01,data01){
       if (err01) console.log('user id = ' + userId + 'is not present in User Schema, error = ' + err01);
       else console.log('data01 = ' + data01);
-
+    */
+    let data01 = findUserById(userId);
     /* to display the date in user readable format */
-      let dateStr = new Date(data.date);
-      dateStr = dateStr.toDateString();
-      b_exercise = {"username": data01.name, "description": data.description, "duration": data.duration, "date": dateStr, "_id": data.id};
-      res.json(b_exercise);
-    });
+    let dateStr = new Date(data.date);
+    dateStr = dateStr.toDateString();
+    b_exercise = {"username": data01.name, "description": data.description, "duration": data.duration, "date": dateStr, "_id": data.id};
+    res.json(b_exercise);
+//    });
 //    res.json(b_exercise);
   });
 });
@@ -108,8 +109,23 @@ app.get('/api/users', function(req,res){
       console.log('list of users = ' + data);
     res.json(data);
   });
-
 });
+
+/* get username from the User Schema, based on the _id */
+let findUserById = function(userId){
+    User.findById({_id: userId}, function(err01,data01){
+      if (err01) console.log('user id = ' + userId + 'is not present in User Schema, error = ' + err01);
+      else {
+        console.log('data01 = ' + data01)
+        return (data01)
+      };
+    });
+};
+
+/* get a full exercise log of any user */
+app.get('/api/users/:_id/logs', function(req,res){
+});
+
 const listener = app.listen(process.env.PORT || 3000, () => {
   console.log('Your app is listening on port ' + listener.address().port)
 })
