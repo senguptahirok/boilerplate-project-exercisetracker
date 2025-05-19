@@ -89,6 +89,8 @@ app.post('/api/users/:_id/exercises', function(req,res){
       else console.log('data01 = ' + data01);
     */
     let data01 = findUserById(userId);
+    console.log(' *** back from function, data01 = ' + data01);
+    console.log(' *** data01.name = ' + data01.name);
     /* to display the date in user readable format */
     let dateStr = new Date(data.date);
     dateStr = dateStr.toDateString();
@@ -116,11 +118,9 @@ const findUserById = function(userId, done){
     console.log('inside function findUserByid, userId = ' + userId);
     User.findById({_id: userId}, function(err01,data01){
       if (err01) console.log('user id = ' + userId + 'is not present in User Schema, error = ' + err01);
-      else {
-        console.log('data01 = ' + data01);
+      else console.log('data01 = ' + data01);
         // return (data01)
-        done(null, data01);
-      };
+      done(null, data01);
     });
 };
 
