@@ -113,6 +113,7 @@ app.get('/api/users', function(req,res){
 
 /* get username from the User Schema, based on the _id */
 let findUserById = function(userId){
+    console.log('inside function findUserByid, userId = ' + userId);
     User.findById({_id: userId}, function(err01,data01){
       if (err01) console.log('user id = ' + userId + 'is not present in User Schema, error = ' + err01);
       else {
