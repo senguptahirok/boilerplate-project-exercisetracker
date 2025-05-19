@@ -114,14 +114,15 @@ app.get('/api/users', function(req,res){
 });
 
 /* get username from the User Schema, based on the _id */
-const findUserById = function(userId, done){
-    console.log('inside function findUserByid, userId = ' + userId);
-    User.findById({_id: userId}, function(err01,data01){
-      if (err01) console.log('user id = ' + userId + 'is not present in User Schema, error = ' + err01);
-      else console.log('data01 = ' + data01);
-        // return (data01)
-      done(null, data01);
-    });
+function findUserById(userId){
+  console.log('inside function findUserByid, userId = ' + userId);
+  User.findById({_id: userId}, function(err01,data01){
+    if (err01) console.log('user id = ' + userId + 'is not present in User Schema, error = ' + err01);
+    else {
+      console.log('data01 = ' + data01);
+      return (data01);
+    }
+  });
 };
 
 /* get a full exercise log of any user */
