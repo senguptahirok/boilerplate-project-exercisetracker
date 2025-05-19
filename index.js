@@ -116,7 +116,7 @@ app.get('/api/users', function(req,res){
 /* get username from the User Schema, based on the _id */
 function findUserById(userId){
   console.log('inside function findUserByid, userId = ' + userId);
-  userId = new mongoose.Types.ObjectId(userId);
+  userId = new m_connect.Types.ObjectId(userId);
   User.findById({_id: userId}, function(err01,data01){
     console.log(' +++ inside findById');
     if (err01) console.log('user id = ' + userId + 'is not present in User Schema, error = ' + err01);
