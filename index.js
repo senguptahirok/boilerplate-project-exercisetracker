@@ -113,8 +113,7 @@ app.get('/api/users', function(req,res){
 app.get('/api/users/:_id/logs', function(req,res){
   console.log('in api/users/:_id/logs ' + req.params._id);
   User.find({id: req.params._id}, function(err, data){
-    console.log('req.params._id = ' + id);
-    if (err) console.log('user id = ' + _id + 'does not have any exercises');
+    if (err) console.log('user id = ' + req.params._id + 'does not have any exercises');
     else console.log('data exercise log = ' + data);
     res.json(data);
   });
