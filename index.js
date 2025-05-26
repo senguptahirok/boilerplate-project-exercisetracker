@@ -93,7 +93,7 @@ app.post('/api/users/:_id/exercises', function(req,res){
       b_exercise = {"username": data01.name, "description": data.description, "duration": data.duration, "date": dateStr, "_id": data.id};
       res.json(b_exercise);
     });
-    res.json(b_exercise);
+    /* res.json(b_exercise); */
   });
 });
 
