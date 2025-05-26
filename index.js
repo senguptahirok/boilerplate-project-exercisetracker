@@ -111,6 +111,11 @@ app.get('/api/users', function(req,res){
 
 /* get a full exercise log of any user */
 app.get('/api/users/:_id/logs', function(req,res){
+  User.findById(_id, function(err, data){
+    if (err) console.log('user id = ' + _id + 'does not have any exercises');
+    else console.log('data exercise log = ' + data);
+    res.json(data);
+  });
 });
 
 const listener = app.listen(process.env.PORT || 3000, () => {
