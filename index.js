@@ -112,8 +112,8 @@ app.get('/api/users', function(req,res){
 /* get a full exercise log of any user */
 app.get('/api/users/:_id/logs', function(req,res){
   console.log('in api/users/:_id/logs ' + req.params._id);
-  User.findById({id: req.params._id}, function(err, data){
-    console.log('req.params._id = ' + req.params._id);
+  User.findOne({id: req.params._id}, function(err, data){
+    console.log('req.params._id = ' + id);
     if (err) console.log('user id = ' + _id + 'does not have any exercises');
     else console.log('data exercise log = ' + data);
     res.json(data);
