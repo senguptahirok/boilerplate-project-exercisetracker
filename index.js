@@ -115,6 +115,7 @@ app.get('/api/users/:_id/logs', function(req,res){
   Exercise.find({id: req.params._id}, function(err, data){
     if (err) console.log('user id = ' + req.params._id + 'does not have any exercises');
     else console.log('data exercise log = ' + data);
+    console.log('count = ' + Object.keys(data).length);
     res.json(data);
   });
 });
