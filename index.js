@@ -111,12 +111,34 @@ app.get('/api/users', function(req,res){
 
 /* get a full exercise log of any user */
 app.get('/api/users/:_id/logs', function(req,res){
-  console.log('in api/users/:_id/logs ' + req.params._id);
+  let logObj_name = '';
+  let logObj_id = '';
+  let logObj_desc = '';
+  let logObj_dur = 0;
+  let logObj_dt = new Date();
+  let logObj_count = 0;
+
+/* get username from the User Schema, based on the _id */
+  User.findById({_id: req.params._id}, function(err01, data01){
+    if (err01) console.log('user id = ' + req.params._id + 'is not present in User Schema, error = ' + err01);
+    else {
+      logObj_name = data01.name;
+      logObj_id = req.params._id;
+    };
+  });
+
+  /* get the respective user's exercise log and count */
   Exercise.find({id: req.params._id}, function(err, data){
     if (err) console.log('user id = ' + req.params._id + 'does not have any exercises');
-    else console.log('data exercise log = ' + data);
-    console.log('count = ' + Object.keys(data).length);
-    res.json(data);
+    else {
+      logObj_desc = data.description;
+      logObj_dur = data.duration;
+      logObj_dt = new Date(data.date);
+      logObj_dt = logObj_dt.toDateString();
+    }
+    logObj_count = Object.keys(data).length;
+    res.json({"username": logObj_name, "count": logObj_count, "_id": logObj_id, 
+              "log": {"description": logObj_desc, "duration": logObj_dur, "date": logObj_dt}});
   });
 });
 
