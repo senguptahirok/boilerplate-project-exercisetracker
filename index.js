@@ -115,7 +115,6 @@ app.get('/api/users/:_id/logs', function(req,res){
   let logObj_id = '';
   let logObj_desc = '';
   let logObj_dur = 0;
-  let logObj_dt = new Date();
   let logObj_count = 0;
 
 /* get username from the User Schema, based on the _id */
@@ -133,12 +132,13 @@ app.get('/api/users/:_id/logs', function(req,res){
     else {
       logObj_desc = data.description;
       logObj_dur = data.duration;
-      logObj_dt = new Date(data.date);
+      let logObj_dt = new Date(data.date);
       logObj_dt = logObj_dt.toDateString();
+      logObj_count = Object.keys(data).length;
+
+      res.json({"username": logObj_name, "count": logObj_count, "_id": logObj_id, 
+               "log": {"description": logObj_desc, "duration": logObj_dur, "date": logObj_dt}});
     }
-    logObj_count = Object.keys(data).length;
-    res.json({"username": logObj_name, "count": logObj_count, "_id": logObj_id, 
-              "log": {"description": logObj_desc, "duration": logObj_dur, "date": logObj_dt}});
   });
 });
 
