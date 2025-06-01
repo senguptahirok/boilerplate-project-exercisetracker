@@ -135,10 +135,9 @@ app.get('/api/users/:_id/logs', function(req,res){
       let logObj_dt = new Date(data.date);
       logObj_dt = logObj_dt.toDateString();
       logObj_count = Object.keys(data).length;
-
-      res.json({"username": logObj_name, "count": logObj_count, "_id": logObj_id, 
-               "log": {"description": logObj_desc, "duration": logObj_dur, "date": data.date}});
     }
+    res.json({"username": logObj_name, "count": logObj_count, "_id": logObj_id, 
+              "log": {"description": logObj_desc, "duration": logObj_dur, "date": data.date}});
   });
 });
 
