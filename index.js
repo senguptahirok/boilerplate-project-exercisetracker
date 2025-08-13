@@ -144,7 +144,7 @@ app.get('/api/users/:_id/logs', function(req,res){
       
       console.log('partial data = ' + {description, duration, date});
       // res.json({description, duration, date});
-      res.json(data);
+      res.json({'username':logObj_name,'count': logObj_count, '_id':logObj_id});
   });
 });
 
