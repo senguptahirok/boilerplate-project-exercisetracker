@@ -143,7 +143,7 @@ app.get('/api/users/:_id/logs', function(req,res){
               "log": {"description": logObj_desc, "duration": logObj_dur, "date": data.date}}); */
     
     let data01 = data.map(function(currentValue){
-      return({'description': currentValue[description],'duration': currentValue[duration], 'date': currentValue[date]});
+      return({'description': currentValue.description,'duration': currentValue.duration, 'date': currentValue.date});
     });
     //  console.log('partial data = ' + {description, duration, date});
       // res.json({description, duration, date});
