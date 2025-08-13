@@ -113,8 +113,6 @@ app.get('/api/users', function(req,res){
 app.get('/api/users/:_id/logs', function(req,res){
   let logObj_name = '';
   let logObj_id = '';
-//  let logObj_desc = '';
-//  let logObj_dur = 0;
   let logObj_count = 0;
 
 /* get username from the User Schema, based on the _id */
@@ -131,23 +129,14 @@ app.get('/api/users/:_id/logs', function(req,res){
     const {description,duration,date} = data;
     if (err) console.log('user id = ' + req.params._id + 'does not have any exercises');
     else {
-      // logObj_desc = data.description;
-      // logObj_dur = data.duration;
       // let logObj_dt = new Date(data.date);
       // logObj_dt = logObj_dt.toDateString();
       logObj_count = Object.keys(data).length;
-      // let log = {'descr' : data.description, 'dur' : data.duration, 'date' : logObj_dt};
-      // console.log('*** log *** = ' + log);
     }
-/*    res.json({"username": logObj_name, "count": logObj_count, "_id": logObj_id, 
-              "log": {"description": logObj_desc, "duration": logObj_dur, "date": data.date}}); */
-    
     let data01 = data.map(function(currentValue){
       return({'description': currentValue.description,'duration': currentValue.duration, 'date': currentValue.date});
     });
-    //  console.log('partial data = ' + {description, duration, date});
-      // res.json({description, duration, date});
-      res.json({'username':logObj_name,'count': logObj_count, '_id':logObj_id,'log': data01});
+    res.json({'username':logObj_name,'count': logObj_count, '_id':logObj_id,'log': data01});
   });
 });
 
