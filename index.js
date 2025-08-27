@@ -126,13 +126,9 @@ app.get('/api/users/:_id/logs', function(req,res){
 
   /* get the respective user's exercise log and count */
   Exercise.find({id: req.params._id}, function(err, data){
-  //  const {description,duration,date} = data;
     if (err) console.log('user id = ' + req.params._id + 'does not have any exercises');
-    else {
-      // let logObj_dt = new Date(data.date);
-      // logObj_dt = logObj_dt.toDateString();
-      logObj_count = Object.keys(data).length;
-    }
+    else logObj_count = Object.keys(data).length;
+    
     let data01 = data.map(function(currentValue){
       let logObj_dt = new Date(currentValue.date);
       logObj_dt = logObj_dt.toDateString();
