@@ -126,7 +126,7 @@ app.get('/api/users/:_id/logs', function(req,res){
 
   /* get the respective user's exercise log and count */
   Exercise.find({id: req.params._id}, function(err, data){
-    const {description,duration,date} = data;
+  //  const {description,duration,date} = data;
     if (err) console.log('user id = ' + req.params._id + 'does not have any exercises');
     else {
       // let logObj_dt = new Date(data.date);
@@ -134,7 +134,7 @@ app.get('/api/users/:_id/logs', function(req,res){
       logObj_count = Object.keys(data).length;
     }
     let data01 = data.map(function(currentValue){
-      return({'description': currentValue.description,'duration': currentValue.duration, 'date': currentValue.date});
+      return({'description': currentValue.description,'duration': currentValue.duration, 'date': currentValue.date.toDateString()});
     });
     res.json({'username':logObj_name,'count': logObj_count, '_id':logObj_id,'log': data01});
   });
