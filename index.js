@@ -116,12 +116,10 @@ app.get('/api/users/:_id/logs', function(req,res){
   let logObj_id = '';
   let logObj_count = 0;
 
-  let fromDt = req.params.dt_from;
-  let toDt = req.params.dt_to;
-  let limit = req.params.limit;
+  const {from, to, limit} = req.query;
 
-  console.log('from date = ' + fromDt);
-  console.log('to date = ' + toDt);
+  console.log('from date = ' + from);
+  console.log('to date = ' + to);
   console.log('limit = ' + limit);
 
 /* get username from the User Schema, based on the _id */
