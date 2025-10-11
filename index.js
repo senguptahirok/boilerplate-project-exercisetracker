@@ -114,6 +114,8 @@ app.get('/api/users/:_id/logs?', function(req,res){
   let logObj_name = '';
   let logObj_id = '';
   let logObj_count = 0;
+  let from_dt = '';
+  let to_dt = '';
 
   const {from, to, limit} = req.query;
 
