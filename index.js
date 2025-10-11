@@ -117,17 +117,9 @@ app.get('/api/users/:_id/logs?', function(req,res){
 
   const {from, to, limit} = req.query;
 
-/*  console.log('from date = ' + from);
-  console.log('to date = ' + to);
-  console.log('limit = ' + limit); */
-
-  let from_dt = new Date(from);
-  let to_dt = new Date(to);
+  if (from === '') from_dt = '0000-00-00';
+  if (to === '') to_dt = '9999-12-31';
   let lim = parseInt(limit);
-
-  console.log('from date = ' + from_dt);
-  console.log('to date = ' + to_dt);
-  console.log('limit = ' + lim);
 
 /* get username from the User Schema, based on the _id */
   User.findById({_id: req.params._id}, function(err01, data01){
@@ -143,10 +135,14 @@ app.get('/api/users/:_id/logs?', function(req,res){
     if (err) console.log('user id = ' + req.params._id + 'does not have any exercises');
     else logObj_count = Object.keys(data).length;
     
-    let data01 = data.map(function(currentValue){
-      let logObj_dt = new Date(currentValue.date);
-      logObj_dt = logObj_dt.toDateString();
-      return({'description': currentValue.description,'duration': currentValue.duration, 'date': logObj_dt});
+//  let data01 = data.map(function(currentValue){
+    let data01 = data.filter(function(currentValue, index){
+      if (currentValue.date >= from_dt && currentValue.date <= to_dt && index <= lim){    
+        let logObj_dt = new Date(currentValue.date);
+        console.log('logObj_dt new Date = ' + logObj_dt);
+        logObj_dt = logObj_dt.toDateString();
+        return({'description': currentValue.description,'duration': currentValue.duration, 'date': logObj_dt});
+      }
     });
     res.json({'username':logObj_name,'count': logObj_count, '_id':logObj_id,'log': data01});
   });
