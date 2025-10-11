@@ -117,9 +117,17 @@ app.get('/api/users/:_id/logs?', function(req,res){
 
   const {from, to, limit} = req.query;
 
-  console.log('from date = ' + from);
+/*  console.log('from date = ' + from);
   console.log('to date = ' + to);
-  console.log('limit = ' + limit);
+  console.log('limit = ' + limit); */
+
+  let from_dt = new Date(from);
+  let to_dt = new Date(to);
+  let lim = parseInt(limit);
+
+  console.log('from date = ' + from_dt);
+  console.log('to date = ' + to_dt);
+  console.log('limit = ' + lim);
 
 /* get username from the User Schema, based on the _id */
   User.findById({_id: req.params._id}, function(err01, data01){
