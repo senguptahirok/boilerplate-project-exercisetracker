@@ -120,7 +120,9 @@ app.get('/api/users/:_id/logs?', function(req,res){
   const {from, to, limit} = req.query;
 
   if (from === '') from_dt = '0000-00-00';
+  else from_dt = from;
   if (to === '') to_dt = '9999-12-31';
+  else to_dt = to;
   let lim = parseInt(limit);
 
 /* get username from the User Schema, based on the _id */
