@@ -110,7 +110,7 @@ app.get('/api/users', function(req,res){
 });
 
 /* get a full exercise log of any user, that can also be filtered based on date range and limit of exercises */
-app.get('/api/users/:_id/logs', function(req,res){
+app.get('/api/users/:_id/logs?', function(req,res){
   let logObj_name = '';
   let logObj_id = '';
   let logObj_count = 0;
