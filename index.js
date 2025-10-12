@@ -125,6 +125,10 @@ app.get('/api/users/:_id/logs?', function(req,res){
   else to_dt = to;
   let lim = parseInt(limit);
 
+  console.log('from_dt = ' + from_dt);
+  console.log('to_dt = ' + to_dt);
+  console.log('lim = ' + lim);
+
 /* get username from the User Schema, based on the _id */
   User.findById({_id: req.params._id}, function(err01, data01){
     if (err01) console.log('user id = ' + req.params._id + 'is not present in User Schema, error = ' + err01);
@@ -142,6 +146,7 @@ app.get('/api/users/:_id/logs?', function(req,res){
 //  let data01 = data.map(function(currentValue){
     let data01 = data.filter(function(currentValue, index){
       if (currentValue.date >= from_dt && currentValue.date <= to_dt && index <= lim){    
+        console.log('currentValue.date = ' + currentValue.date);
         let logObj_dt = new Date(currentValue.date);
         console.log('logObj_dt new Date = ' + logObj_dt);
         logObj_dt = logObj_dt.toDateString();
