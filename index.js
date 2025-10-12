@@ -143,8 +143,8 @@ app.get('/api/users/:_id/logs?', function(req,res){
     if (err) console.log('user id = ' + req.params._id + 'does not have any exercises');
     else logObj_count = Object.keys(data).length;
     
-  //  let data01 = data.map(function(currentValue){
-    let data01 = data.filter(function(currentValue, index){
+    let data01 = data.map(function(currentValue){
+  //  let data01 = data.filter(function(currentValue, index){
       if (currentValue.date >= from_dt && currentValue.date <= to_dt){    
         let logObj_dt = new Date(currentValue.date);
         logObj_dt = logObj_dt.toDateString();
