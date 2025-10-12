@@ -148,7 +148,7 @@ app.get('/api/users/:_id/logs?', function(req,res){
       if (currentValue.date >= from_dt && currentValue.date <= to_dt && index < lim){    
         let logObj_dt = new Date(currentValue.date);
         logObj_dt = logObj_dt.toDateString();
-        return({'description': currentValue.description,'duration': currentValue.duration, 'date': logObj_dt});
+        currentArray.push({'description': currentValue.description,'duration': currentValue.duration, 'date': logObj_dt});
       }
     });
     res.json({'username':logObj_name,'count': Object.keys(data01).length, '_id':logObj_id,'log': data01});
