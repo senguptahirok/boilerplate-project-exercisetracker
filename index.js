@@ -144,7 +144,7 @@ app.get('/api/users/:_id/logs?', function(req,res){
   //  else logObj_count = Object.keys(data).length;
     
   //    let data01 = data.map(function(currentValue){
-    let data01 = data.filter(function(currentValue, index, currentArray){
+    let data02 = data.filter(function(currentValue, index, currentArray){
       if (currentValue.date >= from_dt && currentValue.date <= to_dt && index < lim)
         return (currentArray);
     }).map(function(currentValue01){
@@ -152,7 +152,7 @@ app.get('/api/users/:_id/logs?', function(req,res){
         logObj_dt = logObj_dt.toDateString();
         return({'description': currentValue01.description,'duration': currentValue01.duration, 'date': logObj_dt});
     });
-    res.json({'username':logObj_name,'count': Object.keys(data01).length, '_id':logObj_id,'log': data01});
+    res.json({'username':logObj_name,'count': Object.keys(data02).length, '_id':logObj_id,'log': data02});
   });
 });
 
