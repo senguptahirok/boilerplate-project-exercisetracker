@@ -145,7 +145,7 @@ app.get('/api/users/:_id/logs?', function(req,res){
     
   //    let data01 = data.map(function(currentValue){
     let data01 = data.filter(function(currentValue, index, currentArray){
-      if (currentValue.date >= from_dt && currentValue.date <= to_dt && index < lim){    
+      if (currentValue.date >= from_dt && currentValue.date <= to_dt){    
         let logObj_dt = new Date(currentValue.date);
         logObj_dt = logObj_dt.toDateString();
         currentArray.push({'description': currentValue.description,'duration': currentValue.duration, 'date': logObj_dt});
